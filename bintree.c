@@ -156,7 +156,7 @@ int sameTree(struct node *a, struct node *b)
 int main(int argc, char **argv)
 {
     FILE *f, *f2;
-    int i;
+    int i, i2;
     struct node *root;
     struct node *root2;
     root = NULL;
@@ -168,14 +168,18 @@ int main(int argc, char **argv)
     }
 
     f2 = fopen(argv[1], "r");
-    while (fscanf(f2, "%d", &i) != EOF)
+    while (fscanf(f2, "%d", &i2) != EOF)
     {
-        root2 = insert(root2, i);
+        root2 = insert(root2, i2);
     }
 
     root->left->data = 100000;
+    printf("show root tree.\n");
     printTree(root, 0);
+    printf("show root2 tree.\n");
+    printTree(root2, 0);
 
+    printf("Test search function.\n");
     if (search(58, root))
     {
         printf("It's found!\n");
@@ -209,24 +213,28 @@ int main(int argc, char **argv)
         printf("It's not found!\n");
     }
 
+    printf("Test size function.\n");
     printf("node size: %d\n", size(root));
     printf("node size: %d\n", size(root->left));
     printf("node size: %d\n", size(root->right));
     printf("node size: %d\n", size(root->left->left));
     printf("node size: %d\n", size(root->right->right));
 
+    printf("Test maxDepth function.\n");
     printf("max depth: %d\n", maxDepth(root));
     printf("max depth: %d\n", maxDepth(root->left));
     printf("max depth: %d\n", maxDepth(root->right));
     printf("max depth: %d\n", maxDepth(root->left->left));
     printf("max depth: %d\n", maxDepth(root->right->right));
 
+    printf("Test minvalue function.\n");
     printf("min value: %d\n", minValue(root));
     printf("min value: %d\n", minValue(root->left));
     printf("min value: %d\n", minValue(root->right));
     printf("min value: %d\n", minValue(root->left->left));
     printf("min value: %d\n", minValue(root->right->right));
 
+    printf("Test printPreOrder function.\n");
     printPreOrder(root);
     printf("\n");
     printPreOrder(root->left);
@@ -236,8 +244,9 @@ int main(int argc, char **argv)
     printPreOrder(root->left->left);
     printf("\n");
     printPreOrder(root->right->right);
-    // printf("\n");
+    printf("\n");
 
+    printf("Test printPreOrder function.\n");
     printPostorder(root);
     printf("\n");
     printPostorder(root->left);
@@ -249,6 +258,7 @@ int main(int argc, char **argv)
     printPostorder(root->right->right);
     printf("\n");
 
+    printf("Test printOrder function.\n");
     printOrder(root);
     printf("\n");
     printOrder(root->left);
@@ -259,6 +269,8 @@ int main(int argc, char **argv)
     printf("\n");
     printOrder(root->right->right);
     printf("\n");
+
+    printf("Test sameTree function.\n");
     printf("check: %d \n",sameTree(root, root2));
     if (sameTree(root, root))
     {
